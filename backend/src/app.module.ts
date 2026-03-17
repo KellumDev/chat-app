@@ -4,11 +4,15 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { RoomsModule } from './rooms/rooms.module';
+import { PostModule } from './post/post.module';
 import { MessagesModule } from './messages/messages.module';
 import { GatewayModule } from './gateway/gateway.module';
+
 import { User } from './users/user.entity';
 import { Room } from './rooms/room.entity';
 import { Message } from './messages/message.entity';
+import { Post } from './post/post.entity';
+
 
 @Module({
   imports: [
@@ -19,7 +23,7 @@ import { Message } from './messages/message.entity';
       username: process.env.DB_USERNAME || 'chatuser',
       password: process.env.DB_PASSWORD || 'chatpassword',
       database: process.env.DB_NAME || 'chatapp',
-      entities: [User, Room, Message],
+      entities: [User, Room, Message, Post],
       synchronize: true, // Auto-creates tables — disable in production
     }),
     AuthModule,
@@ -27,6 +31,7 @@ import { Message } from './messages/message.entity';
     RoomsModule,
     MessagesModule,
     GatewayModule,
+    PostModule,
   ],
 })
 export class AppModule {}
